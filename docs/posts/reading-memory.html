@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko" data-theme="light" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="주소, 값, 객체의 수명을 구분하며 메모리 코드를 읽는 연습이다.">
+  <meta name="theme-color" content="#f7f6f2">
+  <title>C/C++ 메모리를 읽는 첫 번째 기준 — 보송송의 보안 노트</title>
+  <meta property="og:title" content="C/C++ 메모리를 읽는 첫 번째 기준">
+  <meta property="og:description" content="주소, 값, 객체의 수명을 구분하며 메모리 코드를 읽는 연습이다.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/site.css">
+  
+  <script>try{var t=localStorage.getItem('bosongsong-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}</script>
+  <script src="../assets/search-index.js" defer></script>
+  <script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">본문으로 바로 가기</a>
+<div class="reading-progress" aria-hidden="true"></div>
+<div class="site-shell">
+  <aside class="sidebar" id="sidebar" aria-label="블로그 메뉴">
+    <a class="brand" href="../index.html" aria-label="보송송의 보안 노트 홈"><div class="brand-copy"><strong>BOSONGSONG</strong><small>SECURITY NOTES</small></div></a>
+    <div class="profile-mini"><span class="avatar-mark" aria-hidden="true"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg></span><strong>보송송의 보안 노트</strong><p>이해하고, 재현하고, 기록한다.</p></div>
+    <nav class="side-nav" aria-label="주 메뉴">
+      <a class="nav-link" href="../index.html"><span class="nav-icon"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></svg></span><span class="nav-label">홈</span></a>
+      <a class="nav-link" href="../archive.html"><span class="nav-icon"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="5" rx="1"/><path d="M5 8v13h14V8m-10 4h6"/></svg></span><span class="nav-label">전체 기록</span><span class="nav-count">6</span></a>
+      <h2 class="nav-section-label">EXPLORE / 카테고리</h2>
+      <a class="nav-link active" href="../categories/development.html" aria-current="page"><span class="nav-icon"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg></span><span class="nav-label">개발</span><span class="nav-count">1</span></a><a class="nav-link" href="../categories/ctf-wargame.html"><span class="nav-icon"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4m0 0c4-4 8 4 14 0v10c-6 4-10-4-14 0"/></svg></span><span class="nav-label">CTF/Wargame</span><span class="nav-count">1</span></a><a class="nav-link" href="../categories/bug-bounty.html"><span class="nav-icon"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="m9 7-2-4m8 4 2-4M3 10h4m10 0h4M3 15h4m10 0h4M5 21l3-3m8 0 3 3M12 8v11"/></svg></span><span class="nav-label">Bug Bounty</span><span class="nav-count">1</span></a><a class="nav-link" href="../categories/blog-docs.html"><span class="nav-icon"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5c-3-2-6-2-10-1v15c4-1 7-1 10 1m0-15c3-2 6-2 10-1v15c-4-1-7-1-10 1V5"/></svg></span><span class="nav-label">블로그/기술문서</span><span class="nav-count">1</span></a><a class="nav-link" href="../categories/papers-conferences.html"><span class="nav-icon"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H5v20h14V7l-5-5Zm0 0v5h5M8 11h8m-8 4h8m-8 4h5"/></svg></span><span class="nav-label">논문/컨퍼런스</span><span class="nav-count">1</span></a><a class="nav-link" href="../categories/contests-certifications.html"><span class="nav-icon"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="m8 12-2 10 6-3 6 3-2-10m-6-4 1 1 3-3"/></svg></span><span class="nav-label">공모전/자격증</span><span class="nav-count">1</span></a>
+      <h2 class="nav-section-label">ABOUT / 이 공간</h2>
+      <a class="nav-link" href="../about.html"><span class="nav-icon"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg></span><span class="nav-label">소개</span></a>
+    </nav>
+    <div class="sidebar-bottom"><p class="availability"><span aria-hidden="true"></span>작은 기록, 꾸준한 탐구</p><div class="sidebar-tools"><button class="icon-button" data-search-open aria-label="글 검색"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></button><button class="icon-button theme-toggle" data-theme-toggle aria-label="어두운 테마로 변경"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/></svg></button></div></div>
+  </aside>
+  <button class="sidebar-backdrop" aria-label="메뉴 닫기" tabindex="-1" hidden></button>
+  <div class="main-shell">
+    <header class="topbar"><button class="menu-toggle icon-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="sidebar"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="breadcrumb"><span>보송송의 노트</span><span aria-hidden="true">/</span><strong>개발</strong></div><div class="topbar-actions"><button class="search-trigger" data-search-open aria-label="글 검색"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span>기록 검색</span><kbd>/</kbd></button><button class="theme-toggle icon-button" data-theme-toggle aria-label="어두운 테마로 변경"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/></svg></button></div></header>
+    <main id="main-content" class="page-content" tabindex="-1"><div class="article-layout"><article class="article"><header class="article-header"><nav class="article-breadcrumb" aria-label="글 위치"><a href="../archive.html">전체 기록</a><span aria-hidden="true">/</span><a href="../categories/development.html">개발</a></nav><p class="eyebrow">DEVELOPMENT</p><h1>C/C++ 메모리를 읽는 첫 번째 기준</h1><p class="article-summary">주소, 값, 객체의 수명을 구분하며 메모리 코드를 읽는 연습이다.</p><div class="article-meta"><span>보송송</span><time datetime="2026-10-27">2026.10.27</time><span>약 2분 읽기</span><span class="example-label">예시 노트</span></div><div class="tag-list"><span class="tag">C/C++</span><span class="tag">메모리</span><span class="tag">포인터</span></div></header><aside class="example-notice"><strong>블로그 구성을 위한 예시 노트이다.</strong> 실제 문제 풀이, 취약점 제보, 수상 또는 자격 취득 실적을 의미하지 않는다.</aside><div class="article-body"><h2 id="section-1">주소와 값을 나누어 읽는다</h2>
+<p>포인터 코드를 볼 때는 <strong>변수가 저장한 값</strong>과 <strong>그 값이 가리키는 객체</strong>를 구분하는 것부터 시작한다. C++ 포인터는 객체의 주소를 저장하며, 역참조를 통해 해당 객체에 접근할 수 있다. 기본 개념은 <a href="https://learn.microsoft.com/en-us/cpp/cpp/raw-pointers?view=msvc-170">Microsoft의 포인터 설명</a>에서 확인할 수 있다.</p>
+<pre><code class="language-cpp">int value = 10;
+int* ptr = &amp;value;
+
+*ptr = 20;
+</code></pre>
+<p>이 예제에서 <code>value</code>는 정수 객체이고, <code>ptr</code>은 <code>value</code>의 주소를 담은 포인터이다. 마지막 문장은 포인터 자체의 값을 바꾸는 것이 아니라, 그 포인터가 가리키는 정수 객체의 값을 <code>20</code>으로 바꾸는 것이다.</p>
+<table>
+<thead>
+<tr>
+<th>표현</th>
+<th>이 예제에서의 의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>value</code></td>
+<td>정수 객체의 값</td>
+</tr>
+<tr>
+<td><code>&amp;value</code></td>
+<td>정수 객체의 주소</td>
+</tr>
+<tr>
+<td><code>ptr</code></td>
+<td>포인터에 저장된 주소</td>
+</tr>
+<tr>
+<td><code>*ptr</code></td>
+<td>그 주소가 가리키는 정수 객체</td>
+</tr>
+</tbody></table>
+<h2 id="section-2">수명을 함께 확인한다</h2>
+<p>주소가 들어 있다는 사실만으로 안전하게 접근할 수 있는 것은 아니다. 그 주소의 객체가 아직 존재하는지 확인해야 한다. 직접 동적 할당을 사용하는 코드라면 할당과 해제의 짝도 확인한다. <code>new</code>로 생성한 객체는 <code>delete</code>, <code>new[]</code>로 생성한 배열은 <code>delete[]</code>와 대응한다.</p>
+<p>코드 리뷰에서는 세 가지 질문을 먼저 적어 두면 좋다.</p>
+<ol>
+<li>이 객체를 누가 만들었는가?</li>
+<li>어느 시점까지 접근할 수 있는가?</li>
+<li>해제 이후에도 해당 주소를 사용하는 코드가 있는가?</li>
+</ol>
+<p>현대 C++의 자원 관리 방식은 <a href="https://learn.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp?view=msvc-170">스마트 포인터 문서</a>를 함께 읽으며 확장할 수 있다.</p>
+<h2 id="section-3">디버깅 노트에는 예상도 남긴다</h2>
+<p>디버거의 출력만 복사하면 나중에 왜 해당 값을 확인했는지 잊기 쉽다. 관찰하기 전에 예상 결과를 적고, 실행 후 실제 결과와 비교한다. 위 예제라면 마지막 문장을 실행한 뒤 <code>value</code>가 <code>20</code>이 되는지 확인하는 식이다.</p>
+<p>이때 특정 주소를 외우기보다 <strong>어떤 객체와 포인터가 연결되어 있는지</strong>를 기록한다. 다음 글에서는 작은 배열을 예제로 원소 접근과 배열의 길이를 함께 정리할 계획을 세울 수 있다.</p>
+<h2 id="section-4">다음 기록에 남길 항목</h2>
+<p>코드, 예상, 관찰, 설명의 네 항목으로 한 페이지를 구성한다. 설명이 막히는 지점이 다음 학습 주제가 된다. 메모리 오류를 분석할 때도 같은 질문을 반복하면 단순한 실행 결과와 원인에 대한 해석을 구분하기 쉽다.</p>
+</div><footer class="article-footer"><p>기록은 다음 질문의 출발점이다.</p><a class="text-link" href="../categories/development.html">개발 목록으로 <svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></a></footer><section class="related-posts"><div class="section-heading"><h2>함께 읽을 노트</h2></div><article class="post-row">
+    <div class="post-meta"><a class="category-pill" href="../categories/blog-docs.html">블로그/기술문서</a><time datetime="2026-10-27">2026.10.27</time><span class="example-label">예시 노트</span></div>
+    <h3><a href="github-pages-first-note.html">나만의 GitHub Pages 블로그를 시작하며</a></h3>
+    <p class="post-excerpt">개발과 보안 공부를 연결하는 작은 기록 공간의 구조와 운영 방식을 정리한다.</p>
+    <div class="post-bottom"><div class="tag-list"><span class="tag">GitHub Pages</span><span class="tag">Markdown</span><span class="tag">기록</span></div><span class="reading-time">약 2분 읽기</span></div>
+    <a class="post-arrow" href="github-pages-first-note.html" aria-label="나만의 GitHub Pages 블로그를 시작하며 읽기"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></a>
+  </article><article class="post-row">
+    <div class="post-meta"><a class="category-pill" href="../categories/bug-bounty.html">Bug Bounty</a><time datetime="2026-10-27">2026.10.27</time><span class="example-label">예시 노트</span></div>
+    <h3><a href="bug-report-structure.html">좋은 버그 바운티 보고서의 기본 구조</a></h3>
+    <p class="post-excerpt">관찰한 동작과 검증한 영향을 구분해 전달하는 보고서 작성 노트이다.</p>
+    <div class="post-bottom"><div class="tag-list"><span class="tag">Bug Bounty</span><span class="tag">보고서</span><span class="tag">재현</span></div><span class="reading-time">약 2분 읽기</span></div>
+    <a class="post-arrow" href="bug-report-structure.html" aria-label="좋은 버그 바운티 보고서의 기본 구조 읽기"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></a>
+  </article></section></article><aside class="article-toc" aria-label="이 글의 목차"><strong>ON THIS PAGE</strong><ol><li class="toc-level-2"><a href="#section-1">주소와 값을 나누어 읽는다</a></li><li class="toc-level-2"><a href="#section-2">수명을 함께 확인한다</a></li><li class="toc-level-2"><a href="#section-3">디버깅 노트에는 예상도 남긴다</a></li><li class="toc-level-2"><a href="#section-4">다음 기록에 남길 항목</a></li></ol></aside></div></main>
+    <footer class="site-footer"><p>© 2026 보송송. 배움의 과정을 차곡차곡.</p><div class="footer-links"><a href="../archive.html">전체 기록</a><a href="../about.html">소개</a><span>Made for curious minds.</span></div></footer>
+  </div>
+</div>
+<dialog class="search-dialog" aria-label="블로그 글 검색"><div class="search-head"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><label for="search-input" class="sr-only">검색어</label><input id="search-input" type="search" autocomplete="off" placeholder="제목, 태그, 궁금한 내용을 검색한다" aria-describedby="search-help"><button class="icon-button" data-search-close aria-label="검색 닫기"><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div><p class="search-hint" id="search-help">제목 · 카테고리 · 태그 · 본문을 검색한다. <kbd>Esc</kbd> 닫기</p><div class="search-results" aria-live="polite" aria-atomic="true"></div></dialog>
+<button class="back-to-top icon-button" aria-label="맨 위로 이동" hidden><svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 12 6-6 6 6M12 6v15"/></svg></button>
+</body></html>

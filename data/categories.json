@@ -1,0 +1,8 @@
+[
+  {"slug":"development","name":"개발","english":"DEVELOPMENT","icon":"code","description":"코드를 만들고 다듬으며, 동작의 이유를 찾는 기록이다.","topics":["C / C++","자료구조","네트워크"]},
+  {"slug":"ctf-wargame","name":"CTF/Wargame","english":"CTF & WARGAME","icon":"flag","description":"문제를 관찰하고 가설을 검증하는 풀이 과정을 남긴다.","topics":["Pwnable","Reversing","문제 풀이"]},
+  {"slug":"bug-bounty","name":"Bug Bounty","english":"BUG BOUNTY","icon":"bug","description":"취약점의 원인과 영향을 이해하고, 제보 방식을 공부한다.","topics":["취약점 분석","보고서","재현 기록"]},
+  {"slug":"blog-docs","name":"블로그/기술문서","english":"BLOG & DOCUMENTATION","icon":"book","description":"배운 것을 설명하고, 다시 찾기 좋은 문서로 정리한다.","topics":["GitHub Pages","학습 정리","문서화"]},
+  {"slug":"papers-conferences","name":"논문/컨퍼런스","english":"PAPERS & CONFERENCES","icon":"paper","description":"새로운 연구의 질문과 방법을 읽고, 생각을 연결한다.","topics":["논문 읽기","발표 노트","연구 질문"]},
+  {"slug":"contests-certifications","name":"공모전/자격증","english":"CONTESTS & CERTIFICATIONS","icon":"award","description":"준비의 목표와 과정을 기록하고, 다음 계획을 세운다.","topics":["프로젝트","준비 과정","회고"]}
+]

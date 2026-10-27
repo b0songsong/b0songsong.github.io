@@ -1,0 +1,39 @@
+---
+title: "새로운 학습 기록의 제목"
+date: "2026-10-27"
+category: "development"
+tags: ["학습", "정리"]
+excerpt: "이 글에서 무엇을 다루는지 한 문장으로 소개한다."
+example: false
+featured: false
+draft: false
+# 이 파일을 content/posts/my-first-note.md 등으로 복사한 뒤 작성한다.
+# 제목, 날짜, category, 요약을 실제 글에 맞게 수정한다.
+# 자신의 글은 example: false, 구성을 보여 주는 예시 글은 example: true로 둔다.
+# draft: true인 원고는 생성되는 사이트에서 제외한다.
+# category: development | ctf-wargame | bug-bounty | blog-docs | papers-conferences | contests-certifications
+---
+
+## 시작한 이유
+
+어떤 질문이나 문제에서 출발했는지 기록한다.
+
+## 핵심 내용
+
+직접 이해한 내용을 자신의 말로 설명한다. 제목은 화면에서 자동으로 표시되므로 본문 제목은 `##`부터 작성한다.
+
+```cpp
+#include <iostream>
+
+int main() {
+    std::cout << "Hello, blog!\n";
+}
+```
+
+## 확인한 결과와 남은 질문
+
+직접 확인한 사실, 아직 검증하지 못한 추정, 다음에 할 일을 구분한다.
+
+## 참고 자료
+
+- [자료 제목](https://example.com/)

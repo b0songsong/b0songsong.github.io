@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>시작 안내 · 보송송의 보안 노트</title>
+  <style>
+    :root{--paper:#f7f6f2;--ink:#22232a;--muted:#676974;--purple:#6b52b5;--line:#e2dfd9;--soft:#eeebfa}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.85 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;word-break:keep-all}main{max-width:950px;margin:auto;padding:56px 28px 80px}a{color:var(--purple);text-underline-offset:4px}a:focus-visible{outline:3px solid var(--purple);outline-offset:5px}.eyebrow{margin:0 0 16px;font:600 12px/1.5 ui-monospace,monospace;letter-spacing:.14em;color:var(--purple)}h1{font-size:clamp(30px,5vw,48px);line-height:1.25;letter-spacing:-.05em;margin:0 0 18px}h2{font-size:24px;letter-spacing:-.03em;margin:0 0 16px}h3{font-size:18px;margin:0 0 12px}p{margin:0 0 14px}.lead{max-width:670px;color:var(--muted);font-size:18px}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0}.button{display:inline-block;padding:12px 20px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:650;text-decoration:none}.button.primary{background:var(--ink);border-color:var(--ink);color:#fff}.note{padding:16px 20px;border-left:3px solid var(--purple);background:var(--soft);font-size:14px}.note p:last-child{margin-bottom:0}section{margin-top:44px;padding-top:34px;border-top:1px solid var(--line)}.step{display:grid;grid-template-columns:40px 1fr;gap:16px;margin:22px 0}.number{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--line);border-radius:50%;font:600 13px/1 ui-monospace,monospace;color:var(--purple)}.step p{color:var(--muted)}code{font:.9em/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;padding:.13em .4em;border-radius:4px;background:#eceae5;overflow-wrap:anywhere}pre{padding:18px 20px;background:#23252e;color:#f5f3ff;border-radius:10px;overflow:auto}pre code{padding:0;background:none;font-size:14px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{background:#eeece7;font-weight:650}ul,ol{padding-left:23px}li{margin:8px 0}.muted{color:var(--muted)}footer{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}@media(max-width:560px){main{padding:32px 20px 48px}.step{grid-template-columns:30px 1fr;gap:12px}.number{width:28px;height:28px}th,td{padding:10px}.button{width:100%;text-align:center}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">BOSONGSONG / SECURITY NOTES / GETTING STARTED</p>
+    <h1>나의 기록을,<br>나의 블로그로.</h1>
+    <p class="lead">자기소개와 여섯 가지 학습 주제를 담은 GitHub Pages용 블로그이다. 먼저 화면을 살펴보고, 원하는 이름과 소개를 넣어 공개하면 된다.</p>
+    <div class="buttons"><a class="button primary" href="docs/index.html">블로그 화면 열기 ↗</a><a class="button" href="README.md">자세한 사용 안내</a></div>
+    <div class="note"><p>압축을 먼저 완전히 푼 뒤 이 파일을 연다. 현재는 공개 배포 전이며, 실제 <code>github.io</code> 주소는 자신의 GitHub 저장소에서 Pages를 활성화한 뒤 생성된다.</p></div>
+  </header>
+
+  <section aria-labelledby="first-title">
+    <p class="eyebrow">01 / FIRST PUBLISH</p>
+    <h2 id="first-title">웹사이트에서 첫 배포하기</h2>
+    <p class="muted">프로그램 설치 없이 완성된 페이지를 올리는 방법이다.</p>
+    <div class="step"><span class="number">1</span><div><h3>저장소 생성</h3><p><a href="https://github.com/new">GitHub에서 새 저장소</a>를 만든다. 이름은 <code>아이디.github.io</code>, 공개 범위는 <strong>Public</strong>, Add README는 켜기로 설정한다.</p></div></div>
+    <div class="step"><span class="number">2</span><div><h3>docs 폴더 업로드</h3><p>저장소의 <strong>Add file → Upload files</strong>에서 이 압축 파일의 <code>docs</code> 폴더를 통째로 올리고 Commit changes를 누른다. 저장소에 <code>docs/index.html</code>이 있어야 한다.</p></div></div>
+    <div class="step"><span class="number">3</span><div><h3>Pages 켜기</h3><p><strong>Settings → Pages</strong>에서 아래 값을 선택하고 Save를 누른다.</p><div class="table-wrap"><table><thead><tr><th>설정</th><th>선택</th></tr></thead><tbody><tr><td>Source</td><td>Deploy from a branch</td></tr><tr><td>Branch</td><td>main</td></tr><tr><td>Folder</td><td>/docs</td></tr></tbody></table></div></div></div>
+    <div class="step"><span class="number">4</span><div><h3>공개 주소 확인</h3><p>Actions에서 배포 성공을 확인한 뒤 Settings → Pages의 <strong>Visit site</strong>를 누른다. 게시에 최대 10분 정도 걸릴 수 있다.</p></div></div>
+    <p class="muted">상위 <code>bosongsong-blog</code> 폴더까지 중첩해서 업로드하지 않는다. 자세한 설정은 <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">GitHub 공식 문서</a>에서 확인할 수 있다.</p>
+  </section>
+
+  <section aria-labelledby="custom-title">
+    <p class="eyebrow">02 / MAKE IT YOURS</p>
+    <h2 id="custom-title">나의 이름과 관심사를 담기</h2>
+    <div class="table-wrap"><table><thead><tr><th>바꿀 내용</th><th>수정 위치</th></tr></thead><tbody>
+      <tr><td>블로그 이름, 작성자, 홈 소개, 관심 분야, GitHub 주소</td><td><code>data/site.json</code></td></tr>
+      <tr><td>소개 페이지의 자기소개 문단</td><td><code>data/site.json</code>의 <code>about</code> 배열</td></tr>
+      <tr><td>색상, 글꼴, 화면 간격</td><td><code>assets/site.css</code></td></tr>
+      <tr><td>학습 기록과 글 내용</td><td><code>content/posts/*.md</code></td></tr>
+    </tbody></table></div>
+    <p style="margin-top:20px">글에는 <strong>예시 노트</strong> 표시가 있다. 실제 활동 실적으로 받아들이지 말고, 자신의 학습 기록으로 교체하거나 내용을 검토해 발전시키면 된다.</p>
+    <p>로컬에서 수정한 내용을 페이지에 반영하려면 Node.js 20 이상을 설치하고 프로젝트 폴더에서 다음 명령을 실행한다. 자동 배포와 같은 환경은 Node.js 24이다.</p>
+    <pre><code>node scripts/build.mjs</code></pre>
+    <p class="muted">다시 생성된 <code>docs</code> 폴더를 업로드하면 변경 사항이 공개된다. 글을 자주 쓴다면 아래 자동 배포를 설정하면 된다.</p>
+  </section>
+
+  <section aria-labelledby="auto-title">
+    <p class="eyebrow">03 / WRITE &amp; PUBLISH</p>
+    <h2 id="auto-title">Markdown으로 쓰고 자동 배포하기</h2>
+    <ol>
+      <li>프로젝트의 전체 내용을 저장소 최상위에 올린다. <code>content</code>, <code>data</code>, <code>scripts</code>, <code>vendor</code> 등이 첫 화면에 있어야 한다.</li>
+      <li><code>.github/workflows/pages.yml</code>도 올라갔는지 확인한다. 빠졌다면 GitHub의 Create new file에서 같은 경로로 만들고 제공 파일의 내용을 붙여넣는다.</li>
+      <li>Settings → Pages의 <strong>Source를 GitHub Actions</strong>로 변경한다.</li>
+      <li>Actions에서 <strong>Publish blog to GitHub Pages → Run workflow</strong>를 실행한다. Pages 설정 전에 첫 실행이 실패했어도 설정 후 다시 실행하면 된다.</li>
+      <li>이후 <code>content/posts</code>의 Markdown 파일을 수정하고 커밋하면 사이트가 자동으로 갱신된다.</li>
+    </ol>
+    <p>새 글은 <code>content/post-template.txt</code>를 <code>content/posts/my-first-note.md</code>처럼 복사해서 작성한다. 자신의 글에는 <code>example: false</code>를 사용한다.</p>
+    <p class="muted">파일 업로드 배포와 자동 배포 중 현재 사용할 방식을 하나 선택한다. 자동 배포의 구조는 <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages">GitHub 공식 워크플로 안내</a>를 따른다.</p>
+  </section>
+
+  <section aria-labelledby="category-title">
+    <p class="eyebrow">04 / SIX CATEGORIES</p>
+    <h2 id="category-title">여섯 가지 기록의 방향</h2>
+    <div class="table-wrap"><table><thead><tr><th>화면의 카테고리</th><th>글의 category 값</th></tr></thead><tbody>
+      <tr><td>개발</td><td><code>development</code></td></tr>
+      <tr><td>CTF/Wargame</td><td><code>ctf-wargame</code></td></tr>
+      <tr><td>Bug Bounty</td><td><code>bug-bounty</code></td></tr>
+      <tr><td>블로그/기술문서</td><td><code>blog-docs</code></td></tr>
+      <tr><td>논문/컨퍼런스</td><td><code>papers-conferences</code></td></tr>
+      <tr><td>공모전/자격증</td><td><code>contests-certifications</code></td></tr>
+    </tbody></table></div>
+  </section>
+  <footer><p>보송송의 보안 노트 · 시작 안내 · 2026-10-27</p><p><a href="docs/index.html">블로그 열기</a> · <a href="README.md">전체 안내서</a> · <a href="https://docs.github.com/ko/pages/quickstart">GitHub Pages 공식 빠른 시작</a></p></footer>
+</main>
+</body>
+</html>
