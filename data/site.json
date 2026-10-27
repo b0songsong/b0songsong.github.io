@@ -6,8 +6,8 @@
   "description": "개발과 시스템 해킹, 임베디드 보안을 탐구하며 남기는 보송송의 학습 노트이다.",
   "intro": "C/C++로 프로그램을 만들고, 시스템이 동작하는 방식을 살펴본다. 시스템 해킹과 임베디드 보안에 대한 궁금증을 작은 실험과 꾸준한 기록으로 이어 간다.",
   "heroHeading": ["코드의 안쪽을,", "조금 더 깊이."],
-  "githubUrl": "",
-  "siteUrl": "",
+  "githubUrl": "https://github.com/b0songsong",
+  "siteUrl": "https://b0songsong.github.io",
   "interests": ["System Hacking", "Embedded", "C / C++", "Firmware"],
   "about": [
     "소프트웨어를 공부하며 시스템 해킹과 임베디드 보안에 관심을 두고 있다. 코드를 작성하는 일과 프로그램의 내부 동작을 이해하는 일을 함께 이어 가고자 한다.",
