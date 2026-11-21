@@ -30,7 +30,7 @@ draft: false
 
 HouseFuzz는 분석 편의를 위해 펌웨어 서비스의 프로세스를 다음 세 유형으로 분류한다.
 
-![펌웨어 서비스의 프로세스 분류](../assets/posts/housefuzz-review/firmware-service-processes.png)
+![펌웨어 서비스의 프로세스 분류](../assets/posts/housefuzz-review/firmware-service-processes-v2.png)
 
 ```txt
 펌웨어 서비스의 프로세스
