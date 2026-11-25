@@ -14,6 +14,9 @@ for (const file of files) {
   if (new Set(ids).size !== ids.length) errors.push(`${file}: duplicate element IDs`);
   if (!text.includes('<html lang="ko"')) errors.push(`${file}: missing Korean language declaration`);
   if ((text.match(/<h1(?:\s[^>]*)?>/g)||[]).length !== 1) errors.push(`${file}: exactly one h1 is expected`);
+  const tableCount = (text.match(/<table(?:\s[^>]*)?>/g)||[]).length;
+  const wrappedTableCount = (text.match(/<div class="table-scroll(?: table-scroll--wide)?"[^>]*>\s*<table(?:\s[^>]*)?>/g)||[]).length;
+  if (tableCount !== wrappedTableCount) errors.push(`${file}: every table must use a horizontal scroll wrapper`);
   for (const [,value] of text.matchAll(/\b(?:href|src)="([^"]*)"/g)) {
     if (!value || /^(?:https?:|mailto:|tel:|data:|javascript:)/i.test(value)) continue;
     linkCount++;

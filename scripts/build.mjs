@@ -78,6 +78,12 @@ function readPost(file) {
     if (depth <= 3) toc.push({id, title: plain(content), depth});
     return `<h${depth} id="${id}">${content}</h${depth}>`;
   });
+  body = body.replace(/<table(?:\s[^>]*)?>[\s\S]*?<\/table>/g, table => {
+    const firstRow = table.match(/<tr(?:\s[^>]*)?>([\s\S]*?)<\/tr>/)?.[1] || '';
+    const columnCount = (firstRow.match(/<(?:th|td)(?:\s[^>]*)?>/g) || []).length;
+    const widthClass = columnCount >= 4 ? ' table-scroll--wide' : '';
+    return `<div class="table-scroll${widthClass}" role="region" aria-label="가로로 스크롤할 수 있는 표" tabindex="0">${table}</div>`;
+  });
   return {...meta, slug, url:`posts/${slug}.html`, body, toc, text:plain(body), reading:Math.max(1, Math.ceil(plain(body).length / 650))};
 }
 

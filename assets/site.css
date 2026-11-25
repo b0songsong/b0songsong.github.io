@@ -271,7 +271,10 @@ a.category-pill:hover { text-decoration: underline; text-underline-offset: 3px; 
 .article-body blockquote { margin: 24px 0; padding: 17px 21px; border-left: 3px solid var(--accent-line); background: var(--accent-soft); color: var(--muted); font-size: 14px; }
 .article-body blockquote p:last-child { margin-bottom: 0; }
 .article-body hr { margin: 35px 0; border: 0; border-top: 1px solid var(--line); }
-.article-body table { display: block; width: max-content; max-width: 100%; margin: 24px 0; border-collapse: collapse; overflow-x: auto; font-size: 13px; line-height: 1.8; }
+.article-body .table-scroll { width: 100%; max-width: 100%; margin: 24px 0; overflow-x: auto; overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; }
+.article-body .table-scroll:focus-visible { outline: 2px solid var(--accent-line); outline-offset: 3px; }
+.article-body .table-scroll table { width: max-content; min-width: 100%; margin: 0; border-collapse: collapse; font-size: 13px; line-height: 1.8; }
+.article-body .table-scroll--wide table { min-width: 620px; }
 .article-body th, .article-body td { padding: 12px 14px; border: 1px solid var(--line); text-align: left; }
 .article-body th { background: var(--sidebar); font-weight: 650; }
 .article-body td { min-width: 90px; }
