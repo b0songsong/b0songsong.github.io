@@ -280,7 +280,11 @@ a.category-pill:hover { text-decoration: underline; text-underline-offset: 3px; 
 .article-body td { min-width: 90px; }
 .article-body img { display: block; max-width: 100%; margin: 24px auto; border-radius: 7px; }
 .article-body input[type="checkbox"] { accent-color: var(--accent); margin-right: 7px; }
-.article-toc { position: sticky; top: 35px; margin-top: 60px; padding: 0 0 0 18px; border-left: 1px solid var(--line); }
+.article-toc { position: sticky; top: 35px; max-height: calc(100vh - 70px); max-height: calc(100dvh - 70px); margin-top: 60px; padding: 0 6px 0 18px; border-left: 1px solid var(--line); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-color: var(--line-strong) transparent; scrollbar-gutter: stable; scrollbar-width: thin; }
+.article-toc::-webkit-scrollbar { width: 6px; }
+.article-toc::-webkit-scrollbar-thumb { border-radius: 999px; background: var(--line-strong); }
+.article-toc::-webkit-scrollbar-track { background: transparent; }
+.article-toc:focus-visible { outline: 2px solid var(--accent-line); outline-offset: 4px; }
 .article-toc > strong { color: var(--subtle); font-size: 10px; font-weight: 600; letter-spacing: 1px; }
 .article-toc ol { margin: 14px 0 0; padding: 0; list-style: none; }
 .article-toc li { margin: 0; }
